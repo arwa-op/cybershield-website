@@ -1,16 +1,92 @@
-# React + Vite
+# CyberShield Community
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CyberShield Community is a full-stack cybersecurity awareness platform that helps users analyze suspicious messages, phishing attempts, scam URLs, and cyber threats using an AI-inspired threat scanning system.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Frontend:
+https://cybershield-website-two.vercel.app/
 
-## React Compiler
+Backend:
+https://cybershield-backend-74sj.onrender.com
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- User Authentication (JWT)
+- Threat Scanning System
+- Risk Analysis Dashboard
+- User-Specific Threat Reports
+- Responsive Modern UI
+- MongoDB Database Integration
+- Protected Routes
+- Analytics Cards
+
+---
+
+## Tech Stack
+
+### Frontend
+- React
+- Vite
+- Tailwind CSS
+- React Router
+- Lucide React
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Mongoose
+- JWT Authentication
+
+---
+
+## Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/arwa-op/cybershield-website.git
+```
+
+### Frontend Setup
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+### Backend Setup
+
+```bash
+cd server
+npm install
+npm run dev
+```
+
+---
+
+## Environment Variables
+
+Create `.env` file inside `server` folder:
+
+```env
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret_key
+PORT=5000
+```
+
+---
+
+## Screenshots
+
+(Add screenshots here later)
+
+---
+
+## Author
+
+Built by Arwa
