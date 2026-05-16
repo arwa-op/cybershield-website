@@ -1,136 +1,101 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-import {
-  Routes,
-  Route,
-} from "react-router-dom";
+import { Routes, Route } from 'react-router-dom'
 
-import Navbar from "./components/Navbar";
+import Navbar from './components/Navbar'
 
-import Home from "./pages/Home";
+import Home from './pages/Home'
 
-import Dashboard from "./pages/Dashboard";
+import Dashboard from './pages/Dashboard'
 
-import About from "./pages/About";
+import About from './pages/About'
 
-import Contact from "./pages/Contact";
+import Contact from './pages/Contact'
 
-import Login from "./pages/Login";
+import Login from './pages/Login'
 
-import Register from "./pages/Register";
+import Register from './pages/Register'
 
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
-  const [threatData, setThreatData] =
-    useState(null);
+  const [threatData, setThreatData] = useState(null)
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false)
 
-  const [error, setError] =
-    useState("");
+  const [error, setError] = useState('')
 
-  const [showResults, setShowResults] =
-    useState(false);
+  const [showResults, setShowResults] = useState(false)
 
   // Scan Handler
 
-  const handleScan = async (
-    input
-  ) => {
+  const handleScan = async (input) => {
     try {
-      setLoading(true);
+      setLoading(true)
 
-      setError("");
+      setError('')
 
-      setShowResults(true);
+      setShowResults(true)
 
-      const userInfo = JSON.parse(
-        localStorage.getItem(
-          "userInfo"
-        )
-      );
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'))
 
       // Not Logged In
 
       if (!userInfo) {
-        setError(
-          "Please login first."
-        );
+        setError('Please login first.')
 
-        setLoading(false);
+        setLoading(false)
 
-        return;
+        return
       }
 
-      const response =
-        await fetch(
-          "http://localhost:5000/scan",
-          {
-            method: "POST",
+      const response = await fetch(
+        'https://cybershield-backend-74sj.onrender.com/scan',
+        {
+          method: 'POST',
 
-            headers: {
-              "Content-Type":
-                "application/json",
+          headers: {
+            'Content-Type': 'application/json',
 
-              Authorization:
-                `Bearer ${userInfo.token}`,
-            },
+            Authorization: `Bearer ${userInfo.token}`,
+          },
 
-            body: JSON.stringify({
-              input,
-            }),
-          }
-        );
+          body: JSON.stringify({
+            input,
+          }),
+        },
+      )
 
-      const data =
-        await response.json();
+      const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(
-          data.error ||
-            "Scan failed"
-        );
+        throw new Error(data.error || 'Scan failed')
       }
 
-      setThreatData(data);
-    }
+      setThreatData(data)
+    } catch (error) {
+      console.log(error)
 
-    catch (error) {
-      console.log(error);
-
-      setError(
-        error.message ||
-          "Unable to analyze threat right now."
-      );
+      setError(error.message || 'Unable to analyze threat right now.')
+    } finally {
+      setLoading(false)
     }
-
-    finally {
-      setLoading(false);
-    }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
-      
       <Navbar />
 
       <Routes>
-
         <Route
           path="/"
           element={
             <Home
               onScan={handleScan}
               loading={loading}
-              threatData={
-                threatData
-              }
+              threatData={threatData}
               error={error}
-              showResults={
-                showResults
-              }
+              showResults={showResults}
             />
           }
         />
@@ -144,30 +109,16 @@ function App() {
           }
         />
 
-         <Route
-          path="/about"
-          element={<About />}
-        />
+        <Route path="/about" element={<About />} />
 
-        <Route
-          path="/contact"
-          element={<Contact />}
-        />
+        <Route path="/contact" element={<Contact />} />
 
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+        <Route path="/login" element={<Login />} />
 
-        <Route
-          path="/register"
-          element={<Register />}
-        />
-
+        <Route path="/register" element={<Register />} />
       </Routes>
-
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

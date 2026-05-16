@@ -1,99 +1,75 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 function Register() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [formData, setFormData] =
-    useState({
-      name: "",
-      email: "",
-      password: "",
-    });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  })
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false)
 
-  const [error, setError] =
-    useState("");
+  const [error, setError] = useState('')
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
 
-      [e.target.name]:
-        e.target.value,
-    });
-  };
+      [e.target.name]: e.target.value,
+    })
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      setLoading(true);
+      setLoading(true)
 
-      setError("");
+      setError('')
 
       const response = await fetch(
-        "http://localhost:5000/auth/register",
+        'http://https://cybershield-backend-74sj.onrender.com:5000/auth/register',
         {
-          method: "POST",
+          method: 'POST',
 
           headers: {
-            "Content-Type":
-              "application/json",
+            'Content-Type': 'application/json',
           },
 
-          body: JSON.stringify(
-            formData
-          ),
-        }
-      );
+          body: JSON.stringify(formData),
+        },
+      )
 
-      const data =
-        await response.json();
+      const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(
-          data.error ||
-            "Registration failed"
-        );
+        throw new Error(data.error || 'Registration failed')
       }
 
       // Save User
 
-      localStorage.setItem(
-        "userInfo",
-        JSON.stringify(data)
-      );
+      localStorage.setItem('userInfo', JSON.stringify(data))
 
       // Redirect
 
-      navigate("/dashboard");
+      navigate('/dashboard')
+    } catch (error) {
+      setError(error.message)
+    } finally {
+      setLoading(false)
     }
-
-    catch (error) {
-      setError(error.message);
-    }
-
-    finally {
-      setLoading(false);
-    }
-  };
+  }
 
   return (
     <section className="flex min-h-screen items-center justify-center px-6 py-20">
-      
       <div className="w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900/70 p-10">
-        
-        <h1 className="text-4xl font-bold text-white">
-          Create Account
-        </h1>
+        <h1 className="text-4xl font-bold text-white">Create Account</h1>
 
-        <p className="mt-3 text-slate-400">
-          Join CyberShield Community.
-        </p>
+        <p className="mt-3 text-slate-400">Join CyberShield Community.</p>
 
         {error && (
           <div className="mt-6 rounded-2xl border border-red-500/30 bg-red-500/10 p-4 text-red-400">
@@ -101,11 +77,7 @@ function Register() {
           </div>
         )}
 
-        <form
-          onSubmit={handleSubmit}
-          className="mt-8 space-y-6"
-        >
-          
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <input
             type="text"
             name="name"
@@ -138,17 +110,12 @@ function Register() {
             disabled={loading}
             className="w-full rounded-2xl bg-cyan-400 px-6 py-4 font-semibold text-slate-950 transition hover:bg-cyan-300"
           >
-            {loading
-              ? "Creating Account..."
-              : "Register"}
+            {loading ? 'Creating Account...' : 'Register'}
           </button>
-
         </form>
-
       </div>
-
     </section>
-  );
+  )
 }
 
-export default Register;
+export default Register
