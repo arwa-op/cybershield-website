@@ -32,7 +32,7 @@ function Register() {
       setError('')
 
       const response = await fetch(
-        'http://https://cybershield-backend-74sj.onrender.com:5000/auth/register',
+        'https://cybershield-backend-74sj.onrender.com/auth/register',
         {
           method: 'POST',
 

@@ -13,7 +13,7 @@ function Dashboard() {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'))
 
         const response = await fetch(
-          'http://https://cybershield-backend-74sj.onrender.com:5000/reports',
+          'https://cybershield-backend-74sj.onrender.com/reports',
           {
             headers: {
               Authorization: `Bearer ${userInfo.token}`,
