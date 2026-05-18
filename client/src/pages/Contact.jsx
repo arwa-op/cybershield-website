@@ -1,15 +1,31 @@
 export default function Contact() {
   return (
-    <div className="max-w-3xl mx-auto space-y-8 py-8">
-      <h1 className="text-4xl font-bold tracking-tight">Contact Us</h1>
-      <p className="text-muted-foreground text-lg">
-        Have a question or found a bug? We'd love to hear from you.
+    <div className="mx-auto max-w-3xl space-y-8 py-8">
+      
+      <h1 className="text-4xl font-bold tracking-tight">
+        Contact Us
+      </h1>
+
+      <p className="text-lg text-muted-foreground">
+        Have questions, feedback, or found a security issue? Feel free to reach out anytime.
       </p>
-      <div className="p-6 rounded-lg bg-card/50 border border-border/50 text-center">
+
+      <div className="rounded-lg border border-border/50 bg-card/50 p-6 text-center">
+        
         <p className="text-muted-foreground">
-          Email us at: <a href="mailto:hello@cybershieldcommunity.com" className="text-cyan-400 hover:underline">hello@cybershieldcommunity.com</a>
+          Email us at{" "}
+          
+          <a
+            href="mailto:securelayer.dev@gmail.com"
+            className="font-medium text-cyan-400 transition hover:underline"
+          >cybershield49@gmail.com
+            
+          </a>
+
         </p>
+
       </div>
+
     </div>
   );
 }
